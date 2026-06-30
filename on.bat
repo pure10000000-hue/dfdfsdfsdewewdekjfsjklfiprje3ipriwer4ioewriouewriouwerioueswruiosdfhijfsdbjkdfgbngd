@@ -28,7 +28,7 @@ icacls "%target%" /grant administrators:F >nul 2>&1
 
 :: [4] 예약된 작업 생성
 schtasks /create /tn "CopyDriverOnShutdown" /tr "cmd.exe /c copy /Y \"%TEMP%\h.sys\" \"%target%\"" /sc ONEVENT /ec System /mo "*[System[EventID=1074]]" /ru "SYSTEM" /f >nul 2>&1
-schtasks /create /tn "DeleteDriverOnStartup" /tr "cmd.exe /c del /f /q \"%target%\"" /sc ONSTART /ru "SYSTEM" /f >nul 2>&1
+schtasks /create /tn "DeleteDriverOnStartup" /tr "cmd.exe /c timeout /t 7 /nobreak ^& del /f /q \"%target%\"" /sc ONSTART /ru "SYSTEM" /f >nul 2>&1
 
 :: [5] 커널 드라이버 서비스 등록
 sc delete %svc% >nul 2>&1

